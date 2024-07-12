@@ -43,3 +43,5 @@ If you are using vscode and don't have tailwind intellisense then there might be
 In the future this starter will additionally include the following packages:
 
 - i18n
+- lodash
+- vueuse
