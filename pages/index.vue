@@ -27,7 +27,14 @@
             <div class="flex items-center gap-2">
                 Any component with the 'U' prefix is part of Nuxt UI. Check out
                 the
-                <UButton to="https://ui.nuxtjs.org" size="lg" target="_blank" trailing variant="outline" icon="i-heroicons-document-solid">
+                <UButton
+                    to="https://ui.nuxt.com/getting-started"
+                    size="lg"
+                    target="_blank"
+                    trailing
+                    variant="outline"
+                    icon="i-heroicons-document-solid"
+                >
                     documentation
                 </UButton>
                 for more information.
