@@ -82,6 +82,20 @@
                 </div>
             </div>
         </UCard>
+        <UCard>
+            <template #header>
+                <h2 class="flex items-center gap-2 text-xl font-bold">
+                    <UIcon
+                        name="i-heroicons-language-solid"
+                        class="size-6"
+                    />
+                    i18n for internationalization
+                </h2>
+            </template>
+            <div>
+                {{ $t('i18n_demonstration') }}
+            </div>
+        </UCard>
     </UContainer>
 </template>
 
