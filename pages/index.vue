@@ -40,7 +40,43 @@
                 for more information.
             </div>
         </UCard>
+        <UCard>
+            <template #header>
+                <h2 class="flex items-center gap-2 text-xl font-bold">
+                    <UIcon
+                        name="i-heroicons-chat-bubble-left-solid"
+                        class="size-6"
+                    />
+                    Lodash for javascript utilities
+                </h2>
+            </template>
+            <div>
+                Useful for things like debouncing, throttling, and more. Try it:
+                <div class="flex flex-col gap-2 mt-4">
+                    <UButton
+                        label="Click Me"
+                        class="w-24"
+                        block
+                        @click="debounceDemonstration"
+                    />
+                    <span>Clicks: {{ actualCounter }}</span>
+                    <span>Debounced Clicks: {{ debounceCounter }}</span>
+                </div>
+            </div>
+        </UCard>
     </UContainer>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const debounceCounter = ref(0);
+const actualCounter = ref(0);
+
+const debounce = useDebounce(() => {
+    debounceCounter.value++;
+}, 300)
+
+function debounceDemonstration() {
+    actualCounter.value++;
+    debounce();
+}
+</script>
