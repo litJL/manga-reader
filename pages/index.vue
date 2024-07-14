@@ -1,5 +1,5 @@
 <template>
-    <UContainer class="flex flex-col gap-8">
+    <UContainer class="flex flex-col gap-8 pb-8">
         <h1 class="mt-8 text-center text-3xl font-bold">Nuxt 3 Starter</h1>
         <UDivider />
         <UCard>
@@ -64,12 +64,31 @@
                 </div>
             </div>
         </UCard>
+        <UCard>
+            <template #header>
+                <h2 class="flex items-center gap-2 text-xl font-bold">
+                    <UIcon
+                        name="i-heroicons-plus-circle-solid"
+                        class="size-6"
+                    />
+                    VueUse for Vue utilities
+                </h2>
+            </template>
+            <div>
+                Useful for things like getting the mouse position and many more things Seriously, this provides a lot of utilities. Here's a demo:
+                <div>
+                    <span>x: {{ x }}</span>
+                    <span>y: {{ y }}</span>
+                </div>
+            </div>
+        </UCard>
     </UContainer>
 </template>
 
 <script lang="ts" setup>
 const debounceCounter = ref(0);
 const actualCounter = ref(0);
+const { x, y } = useMouse();
 
 const debounce = useDebounce(() => {
     debounceCounter.value++;
