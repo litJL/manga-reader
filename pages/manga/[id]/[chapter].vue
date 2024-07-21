@@ -1,11 +1,19 @@
 <template>
-    <UContainer>
+    <UContainer v-if="chapterInformation">
         <UButton v-if="chapter !== 0" label="Previous" :to="`${chapter - 1}`" />
-        <UButton label="Next" :to="`${chapter + 1}`" />
-        <URange v-model="reader" :min="25" :max="100" class="w-96" />
+        <UButton
+            v-if="chapter < chapterInformation.total - 1"
+            label="Next"
+            :to="`${chapter + 1}`"
+        />
+        <URange v-model="reader.width" :min="25" :max="100" class="w-96" />
 
         <div class="flex flex-col items-center">
-            <div v-for="image in images" :style="`width: ${reader}%`" class="min-h-96 bg-gray-700">
+            <div
+                v-for="image in images"
+                :style="`width: ${reader.width}%`"
+                class="min-h-96 bg-gray-700"
+            >
                 <img :src="image" class="w-full" />
             </div>
         </div>

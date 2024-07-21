@@ -53,7 +53,7 @@
                                 :src="getCoverUrl(manga)"
                                 alt="Cover Thumbnail"
                             />
-                            <div>
+                            <div class="flex flex-col gap-2">
                                 <h2 class="line-clamp-2 text-xl font-bold">
                                     {{
                                         manga.attributes.title.en
@@ -61,6 +61,9 @@
                                             : manga.attributes.title.ja
                                     }}
                                 </h2>
+                                <span class="text-gray-400">
+                                    {{  manga.attributes.year }}
+                                </span>
                             </div>
                         </div>
                     </UCard>
