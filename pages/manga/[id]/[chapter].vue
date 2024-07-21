@@ -21,10 +21,26 @@
             <div
                 v-for="image in images"
                 :style="`width: ${reader.width}%`"
-                class="min-h-96 bg-gray-700"
+                class="min-h-12 bg-gray-700"
             >
                 <img :src="image" class="w-full" />
             </div>
+        </div>
+        <div class="my-4 flex justify-center gap-4">
+            <UButton
+                :disabled="chapter === 0"
+                label="Previous"
+                :to="`${chapter - 1}`"
+                class="w-28"
+                block
+            />
+            <UButton
+                :disabled="chapter > chapterInformation.total - 1"
+                label="Next"
+                class="w-28"
+                block
+                :to="`${chapter + 1}`"
+            />
         </div>
     </UContainer>
 </template>
@@ -42,7 +58,6 @@ const metadata = ref<ChapterMetadata>();
 const images = ref<string[]>([]);
 const reader = useReader();
 const quality = useQuality();
-quality.value = "data";
 
 const { data: chapterInformation, status } =
     await useLazyFetch<ChapterFeedResponse>(

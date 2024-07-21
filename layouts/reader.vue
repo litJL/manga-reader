@@ -18,12 +18,18 @@
                         </label>
                         <URange v-model="reader.gap" :min="0" :max="64" />
                     </div>
-                    <div class="flex gap-2">
-                        <UButton
-                            label="Home"
-                            to="/"
-                            color="white"
+                    <div class="mb-4">
+                        <label class="mb-1 flex items-center gap-1">
+                            <UIcon name="i-heroicons-adjustments" />
+                            Quality
+                        </label>
+                        <USelect
+                            v-model="quality"
+                            :options="['data-saver', 'data']"
                         />
+                    </div>
+                    <div class="flex gap-2">
+                        <UButton label="Home" to="/" color="white" />
                         <UButton label="Chapters" to="./" />
                     </div>
                 </UCard>
@@ -37,4 +43,5 @@
 
 <script lang="ts" setup>
 const reader = useReader();
+const quality = useQuality();
 </script>

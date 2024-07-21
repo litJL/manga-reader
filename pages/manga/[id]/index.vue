@@ -13,7 +13,7 @@
             ></div>
         </div>
         <div v-else-if="manga" class="mt-8">
-            <div class="flex gap-8">
+            <div class="flex flex-col gap-8 sm:flex-row">
                 <img
                     :src="getCoverUrl(manga)"
                     alt="Cover image"
@@ -45,7 +45,7 @@
                     <UButton
                         variant="link"
                         :label="`Chapter ${chapter.attributes.chapter}`"
-                        :to="`/manga/${$route.params.id}/${(page-1) * limit + i}`"
+                        :to="`/manga/${$route.params.id}/${(page - 1) * limit + i}`"
                     />
                 </li>
             </ol>
