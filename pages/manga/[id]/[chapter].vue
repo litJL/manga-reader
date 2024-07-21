@@ -1,14 +1,23 @@
 <template>
     <UContainer v-if="chapterInformation">
-        <UButton v-if="chapter !== 0" label="Previous" :to="`${chapter - 1}`" />
-        <UButton
-            v-if="chapter < chapterInformation.total - 1"
-            label="Next"
-            :to="`${chapter + 1}`"
-        />
-        <URange v-model="reader.width" :min="25" :max="100" class="w-96" />
+        <div class="my-4 flex justify-center gap-4">
+            <UButton
+                :disabled="chapter === 0"
+                label="Previous"
+                :to="`${chapter - 1}`"
+                class="w-28"
+                block
+            />
+            <UButton
+                :disabled="chapter > chapterInformation.total - 1"
+                label="Next"
+                class="w-28"
+                block
+                :to="`${chapter + 1}`"
+            />
+        </div>
 
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center" :style="`gap: ${reader.gap}px`">
             <div
                 v-for="image in images"
                 :style="`width: ${reader.width}%`"
@@ -33,7 +42,7 @@ const metadata = ref<ChapterMetadata>();
 const images = ref<string[]>([]);
 const reader = useReader();
 const quality = useQuality();
-quality.value = "data-saver";
+quality.value = "data";
 
 const { data: chapterInformation, status } =
     await useLazyFetch<ChapterFeedResponse>(
@@ -78,5 +87,9 @@ watch(status, () => {
 
 watch(metadata, () => {
     getChapterImageUrls();
+});
+
+definePageMeta({
+    layout: "reader",
 });
 </script>
