@@ -10,7 +10,9 @@ export default defineNuxtConfig({
                 code: "en",
                 file: "en.json",
                 name: "English",
-            }
-        ]
-    }
+            },
+        ],
+        defaultLocale: "en",
+    },
+    ssr: false,
 });
