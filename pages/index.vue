@@ -38,10 +38,10 @@
                     v-model="page"
                     :total="response.total"
                     :page-count="limit"
-                    :max="5"
+                    :max="7"
                     class="my-4"
                 />
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid  sm:grid-cols-2 gap-4">
                     <UCard
                         v-for="manga in response.data"
                         class="ring-offset-primary-500 cursor-pointer overflow-hidden transition hover:ring-offset-4"

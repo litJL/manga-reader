@@ -37,7 +37,7 @@
                 v-model="page"
                 :total="totalChapters"
                 :page-count="limit"
-                :max="5"
+                :max="7"
                 class="my-4"
             />
             <ol class="grid grid-cols-4">
