@@ -6,6 +6,9 @@ I created it because current manga reader websites have too much ui around the r
 
 ## How to use
 ```
-bun dev --host
+bun dev 
 ```
-to start a dev server. Scan the generated qr code to try it on the phone. 
+then just follow instructions in the console.
+
+## Mobile
+Mobile does not really work because of the proxy. I'm still working on fixing the issue.
