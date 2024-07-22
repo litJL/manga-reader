@@ -41,7 +41,7 @@
                     :max="7"
                     class="my-4"
                 />
-                <div class="grid  sm:grid-cols-2 gap-4">
+                <div class="grid gap-4 sm:grid-cols-2">
                     <UCard
                         v-for="manga in response.data"
                         class="ring-offset-primary-500 cursor-pointer overflow-hidden transition hover:ring-offset-4"
@@ -62,7 +62,7 @@
                                     }}
                                 </h2>
                                 <span class="text-gray-400">
-                                    {{  manga.attributes.year }}
+                                    {{ manga.attributes.year }}
                                 </span>
                             </div>
                         </div>
@@ -120,7 +120,7 @@ function getCoverUrl(manga: Manga): string {
     const coverArt = manga.relationships.find((r) => r.type === "cover_art");
     if (!coverArt) return "";
 
-    return `https://uploads.mangadex.org/covers/${manga.id}/${coverArt.attributes.fileName}.256.jpg`;
+    return `/api/covers/${manga.id}/${coverArt.attributes.fileName}.256.jpg`;
 }
 
 watch(page, queryManga);

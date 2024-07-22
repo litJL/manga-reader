@@ -102,7 +102,7 @@ function getCoverUrl(manga: Manga): string {
 
     if (!coverArt) return "";
 
-    return `https://uploads.mangadex.org/covers/${manga.id}/${coverArt.attributes.fileName}`;
+    return `/api/covers/${manga.id}/${coverArt.attributes.fileName}`;
 }
 
 onMounted(() => {
