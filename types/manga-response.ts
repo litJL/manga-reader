@@ -1,10 +1,20 @@
 import z from "zod";
 
+const TagSchema = z.object({
+    id: z.string(),
+    type: z.string(),
+    attributes: z.object({
+        name: z.object({ en: z.string() }),
+        group: z.string(),
+    }),
+});
+
 export const MangaAttributes = z.object({
     title: z.any(),
     altTitles: z.any(),
     description: z.any(),
     status: z.string(),
+    tags: z.array(TagSchema),
     year: z.number().optional().nullable(),
     state: z.string().optional(),
     createdAt: z.string().optional(),

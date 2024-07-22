@@ -1,7 +1,9 @@
 <template>
     <div>
         <header v-if="$route.path !== '/'" class="p-4">
-            <UButton label="Back" size="xl" color="white" to="/" />
+            <UContainer>
+                <UButton label="Back" size="xl" color="white" to="/" />
+            </UContainer>
         </header>
         <slot />
     </div>

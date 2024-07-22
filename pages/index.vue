@@ -120,7 +120,7 @@ function getCoverUrl(manga: Manga): string {
     const coverArt = manga.relationships.find((r) => r.type === "cover_art");
     if (!coverArt) return "";
 
-    return `/api/covers/${manga.id}/${coverArt.attributes.fileName}.256.jpg`;
+    return `https://uploads.mangadex.org/covers/${manga.id}/${coverArt.attributes.fileName}.256.jpg`;
 }
 
 watch(page, queryManga);

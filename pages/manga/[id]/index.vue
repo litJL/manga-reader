@@ -13,42 +13,86 @@
             ></div>
         </div>
         <div v-else-if="manga" class="mt-8">
-            <div class="flex flex-col gap-8 sm:flex-row">
-                <img
-                    :src="getCoverUrl(manga)"
-                    alt="Cover image"
-                    class="w-96 shrink-0 grow-0 rounded-lg"
-                />
-                <div>
-                    <h1 class="mb-4 text-4xl font-bold">
-                        {{
-                            manga.attributes.title.en
-                                ? manga.attributes.title.en
-                                : manga.attributes.title.ja
-                        }}
-                    </h1>
-                    <p class="max-w-[50ch] text-xl text-gray-400">
-                        {{ manga.attributes.description.en }}
-                    </p>
-                    <div class="mt-8 rounded-lg bg-gray-800 p-4"></div>
+            <UCard>
+                <div class="flex flex-col gap-8 sm:flex-row">
+                    <div class="flex flex-col">
+                        <img
+                            :src="getCoverUrl(manga)"
+                            alt="Cover image"
+                            class="w-96 shrink-0 grow-0 rounded-t-lg"
+                        />
+                        <div
+                            class="flex w-96 flex-wrap gap-2 rounded-b-lg bg-gray-950 p-4"
+                        >
+                            <!-- year, status, tags (att,name,en where group genre) -->
+                            <UBadge
+                                v-for="tag in manga.attributes.tags"
+                                color="white"
+                                :key="tag.id"
+                            >
+                                {{ tag.attributes.name.en }}
+                            </UBadge>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <h1 class="text-4xl font-bold">
+                            {{
+                                manga.attributes.title.en
+                                    ? manga.attributes.title.en
+                                    : manga.attributes.title.ja
+                            }}
+                        </h1>
+                        <p class="max-w-[50ch] text-lg text-gray-400">
+                            {{ manga.attributes.description.en }}
+                        </p>
+                        <UDivider />
+                        <div class="flex flex-col gap-2">
+                            <div
+                                v-if="
+                                    manga.attributes.year &&
+                                    manga.attributes.status
+                                "
+                            >
+                                <span class="text-gray-400">
+                                    This Manga was released in
+                                    <UBadge color="white">
+                                        {{ manga.attributes.year }}
+                                    </UBadge>
+                                    and is
+                                    <UBadge color="white">
+                                        {{ manga.attributes.status }}
+                                    </UBadge>
+                                    .
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <UPagination
-                v-model="page"
-                :total="totalChapters"
-                :page-count="limit"
-                :max="7"
-                class="my-4"
-            />
-            <ol class="grid grid-cols-4">
-                <li v-for="(chapter, i) in chapters" :key="chapter.id">
-                    <UButton
-                        variant="link"
-                        :label="`Chapter ${chapter.attributes.chapter}`"
-                        :to="`/manga/${$route.params.id}/${(page - 1) * limit + i}`"
-                    />
-                </li>
-            </ol>
+            </UCard>
+            <UCard class="mt-8 h-[470px] mb-8">
+                <template #header>
+                    <div class="flex gap-8 items-center">
+                        <h2 class="text-2xl font-bold">Chapters</h2>
+                        <UPagination
+                            v-model="page"
+                            :total="totalChapters"
+                            :page-count="limit"
+                            :max="7"
+                            class="my-4"
+                        />
+                    </div>
+                </template>
+                <ol class="grid grid-cols-5">
+                    <li v-for="(chapter, i) in chapters" :key="chapter.id">
+                        <UButton
+                            variant="link"
+                            :label="`Chapter ${chapter.attributes.chapter}`"
+                            :to="`/manga/${$route.params.id}/${(page - 1) * limit + i}`"
+                            
+                        />
+                    </li>
+                </ol>
+            </UCard>
         </div>
     </UContainer>
 </template>
@@ -102,7 +146,7 @@ function getCoverUrl(manga: Manga): string {
 
     if (!coverArt) return "";
 
-    return `/api/covers/${manga.id}/${coverArt.attributes.fileName}`;
+    return `https://uploads.mangadex.org/covers/${manga.id}/${coverArt.attributes.fileName}`;
 }
 
 onMounted(() => {
